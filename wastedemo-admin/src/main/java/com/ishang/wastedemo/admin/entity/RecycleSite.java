@@ -1,11 +1,9 @@
 package com.ishang.wastedemo.admin.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class RecycleSite implements Serializable {
-
-	private Integer id;
+    private Integer id;
 
     private String sitename;
 
@@ -26,33 +24,29 @@ public class RecycleSite implements Serializable {
     }
 
     public String getSitename() {
-		return sitename;
-	}
+        return sitename;
+    }
 
-	public void setSitename(String sitename) {
-		this.sitename = sitename;
-	}
+    public void setSitename(String sitename) {
+        this.sitename = sitename == null ? null : sitename.trim();
+    }
 
-	public String getArea() {
-		return area;
-	}
+    public String getArea() {
+        return area;
+    }
 
-	public void setArea(String area) {
-		this.area = area;
-	}
+    public void setArea(String area) {
+        this.area = area == null ? null : area.trim();
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
+    }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-    
     public Integer getDelFlag() {
         return delFlag;
     }
@@ -61,10 +55,19 @@ public class RecycleSite implements Serializable {
         this.delFlag = delFlag;
     }
 
-	@Override
-	public String toString() {
-		return "RecycleSite [id=" + id + ", sitename=" + sitename + ", area=" + area + ", address=" + address
-				+ ", delFlag=" + delFlag + "]";
-	}
-
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", sitename=").append(sitename);
+        sb.append(", area=").append(area);
+        sb.append(", address=").append(address);
+        sb.append(", delFlag=").append(delFlag);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
 }

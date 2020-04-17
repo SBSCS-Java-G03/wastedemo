@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.RecycleSiteMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.RecycleSite">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sitename" jdbcType="VARCHAR" property="sitename" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recycle_site
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.RecycleSite">
+    insert into recycle_site (id, sitename, area, 
+      address, del_flag)
+    values (#{id,jdbcType=INTEGER}, #{sitename,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.RecycleSite">
+    update recycle_site
+    set sitename = #{sitename,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, sitename, area, address, del_flag
+    from recycle_site
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, sitename, area, address, del_flag
+    from recycle_site
+  </select>
+</mapper>
