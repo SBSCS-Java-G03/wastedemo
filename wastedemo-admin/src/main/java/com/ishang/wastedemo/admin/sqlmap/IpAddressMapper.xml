@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.IpAddressMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.IpAddress">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="ipaddr" jdbcType="VARCHAR" property="ipaddr" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ip_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.IpAddress">
+    insert into ip_address (id, userid, ipaddr, 
+      createtime, del_flag)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{ipaddr,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.IpAddress">
+    update ip_address
+    set userid = #{userid,jdbcType=INTEGER},
+      ipaddr = #{ipaddr,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, userid, ipaddr, createtime, del_flag
+    from ip_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, userid, ipaddr, createtime, del_flag
+    from ip_address
+  </select>
+</mapper>

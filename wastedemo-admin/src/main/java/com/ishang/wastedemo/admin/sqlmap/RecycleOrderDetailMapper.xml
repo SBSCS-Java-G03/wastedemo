@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.RecycleOrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.RecycleOrderDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderid" jdbcType="INTEGER" property="orderid" />
+    <result column="rubbishid" jdbcType="INTEGER" property="rubbishid" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recycle_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.RecycleOrderDetail">
+    insert into recycle_order_detail (id, orderid, rubbishid, 
+      del_flag)
+    values (#{id,jdbcType=INTEGER}, #{orderid,jdbcType=INTEGER}, #{rubbishid,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.RecycleOrderDetail">
+    update recycle_order_detail
+    set orderid = #{orderid,jdbcType=INTEGER},
+      rubbishid = #{rubbishid,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, orderid, rubbishid, del_flag
+    from recycle_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, orderid, rubbishid, del_flag
+    from recycle_order_detail
+  </select>
+</mapper>

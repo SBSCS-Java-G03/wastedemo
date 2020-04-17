@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.AdminMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.Admin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role" jdbcType="TINYINT" property="role" />
+    <result column="tel" jdbcType="CHAR" property="tel" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.Admin">
+    insert into admin (id, username, `password`, 
+      `role`, tel, email, del_flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{role,jdbcType=TINYINT}, #{tel,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, #{delFlag,jdbcType=TINYINT}
+      )
+  </insert>
+  <update id="updateAllByID" parameterType="com.ishang.wastedemo.admin.entity.Admin">
+    update admin
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `role` = #{role,jdbcType=TINYINT},
+      tel = #{tel,jdbcType=CHAR},
+      email = #{email,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, `password`, `role`, tel, email, del_flag
+    from admin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, `password`, `role`, tel, email, del_flag
+    from admin
+  </select>
+  
+  <!-- 按照username查找 -->
+  <select id="findbyName"  parameterType="com.ishang.wastedemo.admin.entity.Admin" resultMap="BaseResultMap">
+  	select id, username, `password`, `role`, tel, email, del_flag
+    from admin
+    where username like concat('%',#{username,jdbcType=VARCHAR},'%') 
+  </select>
+  
+  <!-- 只更新有变化的字段 -->
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.Admin">
+	update admin
+	<trim prefix="set" suffixOverrides=",">
+		<if test="username != null">username = #{username,jdbcType=VARCHAR},</if>
+		<if test="password != null">`password` = #{password,jdbcType=VARCHAR},</if>
+		<if test="role != null">`role` = #{role,jdbcType=TINYINT},</if>
+		<if test="tel != null">tel = #{tel,jdbcType=CHAR},</if>
+		<if test="email != null">email = #{email,jdbcType=VARCHAR},</if>
+		<if test="delFlag != null">del_flag = #{delFlag,jdbcType=TINYINT},</if>
+	</trim>
+	where id = #{id,jdbcType=INTEGER}
+</update>
+</mapper>

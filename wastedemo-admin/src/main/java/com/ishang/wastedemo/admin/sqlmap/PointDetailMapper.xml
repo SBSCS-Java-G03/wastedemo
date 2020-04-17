@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.PointDetailMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.PointDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="source" jdbcType="VARCHAR" property="source" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from point_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.PointDetail">
+    insert into point_detail (id, userid, createtime, 
+      num, `source`)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{num,jdbcType=INTEGER}, #{source,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.PointDetail">
+    update point_detail
+    set userid = #{userid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      num = #{num,jdbcType=INTEGER},
+      `source` = #{source,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, userid, createtime, num, `source`
+    from point_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, userid, createtime, num, `source`
+    from point_detail
+  </select>
+</mapper>

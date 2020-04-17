@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ishang.wastedemo.admin.dao.RecycleOrderMapper">
+  <resultMap id="BaseResultMap" type="com.ishang.wastedemo.admin.entity.RecycleOrder">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="siteid" jdbcType="INTEGER" property="siteid" />
+    <result column="pointnumber" jdbcType="REAL" property="pointnumber" />
+    <result column="totalnumber" jdbcType="INTEGER" property="totalnumber" />
+    <result column="totalprice" jdbcType="REAL" property="totalprice" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="del_flag" jdbcType="TINYINT" property="delFlag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from recycle_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ishang.wastedemo.admin.entity.RecycleOrder">
+    insert into recycle_order (id, userid, siteid, 
+      pointnumber, totalnumber, totalprice, 
+      createtime, del_flag)
+    values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{siteid,jdbcType=INTEGER}, 
+      #{pointnumber,jdbcType=REAL}, #{totalnumber,jdbcType=INTEGER}, #{totalprice,jdbcType=REAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ishang.wastedemo.admin.entity.RecycleOrder">
+    update recycle_order
+    set userid = #{userid,jdbcType=INTEGER},
+      siteid = #{siteid,jdbcType=INTEGER},
+      pointnumber = #{pointnumber,jdbcType=REAL},
+      totalnumber = #{totalnumber,jdbcType=INTEGER},
+      totalprice = #{totalprice,jdbcType=REAL},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, userid, siteid, pointnumber, totalnumber, totalprice, createtime, del_flag
+    from recycle_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, userid, siteid, pointnumber, totalnumber, totalprice, createtime, del_flag
+    from recycle_order
+  </select>
+</mapper>
