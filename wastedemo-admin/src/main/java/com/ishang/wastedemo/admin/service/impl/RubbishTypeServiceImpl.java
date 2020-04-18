@@ -5,41 +5,40 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ishang.wastedemo.admin.dao.RubbishMapper;
-import com.ishang.wastedemo.admin.entity.Rubbish;
-import com.ishang.wastedemo.admin.service.RubbishService;
+import com.ishang.wastedemo.admin.dao.RubbishTypeMapper;
+import com.ishang.wastedemo.admin.entity.RubbishType;
+import com.ishang.wastedemo.admin.service.RubbishTypeService;
 import com.ishang.wastedemo.core.page.PageRequest;
 import com.ishang.wastedemo.core.page.PageResult;
 
-@Service("RubbishService")
-public class RubbishServiceImpl implements RubbishService {
+@Service("RubbishTypeService")
+public class RubbishTypeServiceImpl implements RubbishTypeService {
 
 	@Autowired
-	private RubbishMapper dao;
+	private RubbishTypeMapper dao;
 	
 	@Override
-	public int save(Rubbish record) {
+	public int save(RubbishType record) {
 		// TODO Auto-generated method stub
 		return dao.insert(record);
 	}
 
 	@Override
-	public int delete(Rubbish record) {
+	public int delete(RubbishType record) {
 		// TODO Auto-generated method stub
 		record.setDelFlag(0);
 		return dao.updateByPrimaryKey(record);
 	}
 
 	@Override
-	public int delete(List<Rubbish> records) {
+	public int delete(List<RubbishType> records) {
 		// TODO Auto-generated method stub
-		for(Rubbish r : records) 
-			delete(r);
+		for(RubbishType t: records) delete(t);
 		return 0;
 	}
 
 	@Override
-	public Rubbish findById(Long id) {
+	public RubbishType findById(Long id) {
 		// TODO Auto-generated method stub
 		return dao.selectByPrimaryKey(id.intValue());
 	}
@@ -51,13 +50,7 @@ public class RubbishServiceImpl implements RubbishService {
 	}
 
 	@Override
-	public List<Rubbish> selectbytype(int typeid) {
-		// TODO Auto-generated method stub
-		return dao.selectbytype(typeid);
-	}
-
-	@Override
-	public List<Rubbish> findall() {
+	public List<RubbishType> findall() {
 		// TODO Auto-generated method stub
 		return dao.selectAll();
 	}

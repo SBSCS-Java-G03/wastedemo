@@ -12,4 +12,6 @@ public interface RubbishService extends CurdService<Rubbish> {
 
 	List<Rubbish> selectbytype(int i);
 
+	List<Rubbish> findall();
+
 }
