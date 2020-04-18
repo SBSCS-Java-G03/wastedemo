@@ -20,6 +20,9 @@ public class UserQuestionController {
 	 * 1问题广场 1
 	 * 2查找问题
 	 * 3user提问 1
+	 * 4查找所有 即1
+	 * 5模糊查找 即2
+	 * 6删除问题
 	 * */
 	
 	@PostMapping(value = "/findAll")

@@ -13,4 +13,6 @@ public interface RubbishMapper {
     List<Rubbish> selectAll();
 
     int updateByPrimaryKey(Rubbish record);
+
+	List<Rubbish> selectbytype(int typeid);
 }

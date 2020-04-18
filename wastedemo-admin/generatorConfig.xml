@@ -33,32 +33,34 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.ishang.wastedemo.admin.entity" targetProject="wastedemo-admin/src/main/java">
+        <javaModelGenerator targetPackage="com.ishang.wastedemo.admin.entity" targetProject="wastedemo/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成mapxml文件 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="wastedemo-admin/src/main/resources" >
+        <sqlMapGenerator targetPackage="mapper" targetProject="wastedemo/src/main/resources" >
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
         <!-- 生成mapxml对应client，也就是接口dao -->
-        <javaClientGenerator targetPackage="com.ishang.wastedemo.admin.dao" targetProject="wastedemo-admin/src/main/java" type="XMLMAPPER" >
+        <javaClientGenerator targetPackage="com.ishang.wastedemo.admin.dao" targetProject="wastedemo/src/main/java" type="XMLMAPPER" >
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-		<table tableName="admin"></table>
+ 		<table tableName="admin"></table>
 	    <table tableName="ip_address"></table>
 	    <table tableName="point_detail"></table>
 	    <table tableName="point_question"></table>
 	    <table tableName="recycle_order"></table>
 	    <table tableName="recycle_order_detail"></table>
+	    <table tableName="recycle_site"></table>
 	    <table tableName="rubbish"></table>
 	    <table tableName="rubbish_type"></table>
 	    <table tableName="store"></table>
 	    <table tableName="user"></table>
-	    <table tableName="user_total_data"></table>
+	    <table tableName="user_total_data"></table> 
+	    
 
     </context>
 </generatorConfiguration>
